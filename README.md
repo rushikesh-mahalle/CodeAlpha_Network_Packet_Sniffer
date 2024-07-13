@@ -8,5 +8,5 @@ This project is a Python-based network packet sniffer. It captures and analyzes 
 - Filters captured packets based on protocol types such as TCP, UDP, ICMP, etc.
 - Analyzes packet data to extract key details such as source and destination IP addresses, port numbers, packet size, and more.
 - Provides a user-friendly console interface for easy navigation and use. 
-## Created by S Bhale
+## Created by Rushikesh Mahalle
 
