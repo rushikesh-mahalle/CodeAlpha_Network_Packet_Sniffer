@@ -21,14 +21,13 @@ def main():
         print('\nEthernet Frame: ')
         print(TAB_1 + 'Destination: {}, Source: {}, Protocol: {}'.format(dest_mac, src_mac, eth_proto))
 
-        #8 for IPv4 #Shantanu_Bhale_CodeAlpha
         if eth_proto == 8:
             (version, header_length, ttl, proto, src, target, data) = ipv4_packet(data)
             print(TAB_1 + 'IPv4 Packet: ')
             print(TAB_2 + 'Version: {}, Header_length: {}, TTL: {}'.format(version, header_length, ttl))
             print(TAB_2 + 'Protocol: {}, Source: {}, Target: {}'.format(proto, src, target))
 
-            # ICMP #Shantanu_Bhale_CodeAlpha
+            # ICMP 
             if proto == 1:
                 icmp_type, code, checksum, data = icmp_packet(data)
                 print(TAB_1 + 'ICMP Packet: ')
@@ -36,7 +35,7 @@ def main():
                 print(TAB_2 + 'Data: ')
                 print(format_multi_line(DATA_TAB_3, data))
 
-            # TCP #Shantanu_Bhale_CodeAlpha
+            # TCP 
             elif proto == 6:
                 (src_port, dest_port, sequence, acknowledgement, flag_urg, flag_ack, flag_psh, flag_rst, flag_syn, flag_fin, data) = tcp_segment(data)
                 print(TAB_1 + 'TCP Segment: ')
@@ -47,7 +46,7 @@ def main():
                 print(TAB_2 + 'Data: ')
                 print(format_multi_line(DATA_TAB_3, data))
 
-            #UDP #Shantanu_Bhale_CodeAlpha
+            #UDP 
             elif proto == 17:
                 src_port, dest_port, length, data = udp_segment(data)
                 print(TAB_1 + 'UDP Segment: ')
@@ -55,7 +54,7 @@ def main():
                 print(TAB_2 + 'Data: ')
                 print(format_multi_line(DATA_TAB_3, data))
 
-            #Other #Shantanu_Bhale_CodeAlpha
+            #Other
             else:
                 print(TAB_1 + 'Data: ')
                 print(format_multi_line(DATA_TAB_2, data))
