@@ -63,18 +63,18 @@ def main():
             print(format_multi_line(DATA_TAB_1, data))
 
 
-# Unpack Ethernet Frame #Shantanu_Bhale_CodeAlpha
+
 def ethernet_frame(data):
     dest_mac, src_mac, proto = struct.unpack('! 6s 6s H', data[:14])
     return get_mac_addr(dest_mac), get_mac_addr(src_mac), socket.htons(proto), data[14:]
 
-# Return properly formated MAC address (i.e AA:BB:CC:DD:EE:FF)    #Shantanu_Bhale_CodeAlpha
+
 
 def get_mac_addr(bytes_addr):
     bytes_str = map('{:02x}'.format, bytes_addr)
     return ':'.join(bytes_str).upper()
 
-#Unpack IPv4 Packets  #Shantanu_Bhale_CodeAlpha
+
 def ipv4_packet(data):
     version_header_length = data[0]
     version = version_header_length >> 4
@@ -86,12 +86,11 @@ def ipv4_packet(data):
 def ipv4(addr):
     return '.'.join(map(str, addr))
 
-#Unpack ICMP packet  #Shantanu_Bhale_CodeAlpha
 def icmp_packet(data):
     icmp_type, code, checksum = struct.unpack('! B B H', data[:4])
     return icmp_type, code, checksum, data[4:]
 
-#unpack TCP segment  #Shantanu_Bhale_CodeAlpha
+
 def tcp_segment(data):
     (src_port, dest_port, sequence, acknowledgement, offset_reserved_flags) = struct.unpack('! H H L L H', data[:14])
     offset = (offset_reserved_flags >> 12) * 4
@@ -103,12 +102,12 @@ def tcp_segment(data):
     flag_fin = offset_reserved_flags & 1
     return src_port, dest_port, sequence, acknowledgement, flag_urg, flag_ack, flag_psh, flag_rst, flag_syn, flag_fin, data[offset:]
 
-#Unpack UDP segment  #Shantanu_Bhale_CodeAlpha
+
 def udp_segment(data):
     src_port, dest_port, size = struct.unpack('! H H 2x H', data[:8])
     return src_port, dest_port, size, data[8:]
 
-#Format multi_line data  #Shantanu_Bhale_CodeAlpha
+
 def format_multi_line(prefix, string, size=80):
     size -= len(prefix)
     if isinstance(string, bytes):
